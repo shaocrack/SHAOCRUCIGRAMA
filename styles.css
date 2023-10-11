@@ -1,0 +1,134 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    display: flex;
+}
+
+/* Estilos del crucigrama */
+#crossword-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 50%;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #000;
+}
+
+#crossword {
+    display: grid;
+    grid-template-columns: repeat(11, 60px);
+    grid-template-rows: repeat(11, 60px);
+    gap: 2px;
+    font-size: 24px;
+}
+
+.cell {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    vertical-align: middle;
+    background-color: #fff;
+    border: 1px solid #000;
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.correct {
+    background-color: #8BC34A;
+    color: #fff;
+}
+
+.horizontal {
+    background-color: #81C784;
+}
+
+.vertical {
+    background-color: #A5D6A7;
+}
+
+.cell.initial-letter {
+    color: red;
+}
+
+.cell.completed {
+    background-color: yellow;
+}
+
+/* Estilos del contenedor de preguntas y respuestas */
+#question-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #000;
+}
+
+#question {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#wordInput {
+    font-size: 16px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+#submitButton {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#submitButton:hover {
+    background-color: #0056b3;
+}
+
+/* Media queries para dispositivos móviles */
+@media (max-width: 768px) {
+    #crossword-container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    #crossword {
+        font-size: 16px;
+    }
+
+    .cell {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    #question-container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    #question {
+        font-size: 16px;
+    }
+
+    #wordInput {
+        font-size: 14px;
+    }
+
+    #submitButton {
+        font-size: 14px;
+    }
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <div id="crossword-container">
+        <div id="crossword"></div>
+    </div>
+    <div id="question-container">
+        <div id="question"></div>
+        <input type="text" id="wordInput" placeholder="Escribe tu respuesta">
+        <button id="submitButton">Enviar</button>
+    </div>
+
+    <script>
+        // const words = [
+        //     { word: "QUIERES", row: 0, col: 0, direction: "horizontal", completed: false },
+        //     { word: "IR", row: 1, col: 2, direction: "vertical", completed: false },
+        //     // Agrega más palabras aquí
+        // ];
+        const words = [
+            { word: "QUIERES", row: 0, col: 0, direction: "horizontal", completed: false },
+            { word: "IR", row: 1, col: 2, direction: "vertical", completed: false },
+            { word: "POR", row: 2, col: 3, direction: "horizontal", completed: false },
+            { word: "UNA", row: 3, col: 5, direction: "horizontal", completed: false },
+            { word: "SALCHIPAPA", row: 2, col: 7, direction: "vertical", completed: false },
+            { word: "CONFIRMA", row: 9, col: 0, direction: "horizontal", completed: false },
+            { word: "HERMOSA", row: 11, col: 1, direction: "horizontal", completed: false },
+            //{ word: "SHAO", row: 8, col: 10, direction: "vertical", completed: false },
+        ];
+
+        const questions = [
+            { word: "QUIERES", question: "¿Cómo se dice 'do you want' en español?", answer: "QUIERES" },
+            { word: "IR", question: "¿Cómo se dice 'to go' en español?", answer: "IR" },
+            { word: "POR", question: "¿como se le dice a esta letra (X) enmultiplicacion en clase de  matematicas?", answer: "POR" },
+            { word: "UNA", question: "¿Cuál es el opuesto de 'varias'?", answer: "UNA" },
+            { word: "SALCHIPAPA", question: "¿Qué plato de comida rápida incluye papas y salchichas?", answer: "SALCHIPAPA" },
+            { word: "CONFIRMA", question: "¿aqui no sabia que pregunta xD, pon confirma ", answer: "CONFIRMA" },
+            { word: "HERMOSA", question: "¿aparte de bella, preciosas tu eres? (her...)", answer: "HERMOSA" },
+           // { word: "SHAO", question: "¿Qué expresión se usa para decir adiós en algunos países de habla hispana?", answer: "SHAO" }
+        ];
+
+        
+
+        function createCrossword() {
+            const crossword = document.getElementById("crossword");
+            const wordInput = document.getElementById("wordInput");
+            const submitButton = document.getElementById("submitButton");
+            const questionContainer = document.getElementById("question");
+
+            let currentQuestionIndex = 0;
+
+            function displayCrossword() {
+                crossword.innerHTML = '';
+
+                for (let row = 0; row < 12; row++) {
+                    for (let col = 0; col < 11; col++) {
+                        const cell = document.createElement("div");
+                        cell.classList.add("cell");
+
+                        let cellContent = '';
+
+                        for (const word of words) {
+                            if (
+                                (word.direction === "horizontal" &&
+                                    row === word.row &&
+                                    col >= word.col &&
+                                    col < word.col + word.word.length) ||
+                                (word.direction === "vertical" &&
+                                    col === word.col &&
+                                    row >= word.row &&
+                                    row < word.row + word.word.length)
+                            ) {
+                                cellContent = word.word.charAt(
+                                    word.direction === "horizontal"
+                                        ? col - word.col
+                                        : row - word.row
+                                );
+
+                                if (word.completed) {
+                                    cell.classList.add("completed");
+                                }
+                            }
+                        }
+
+                        if (!cellContent) {
+                            const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+                            cellContent = randomLetter;
+                        }
+
+                        cell.textContent = cellContent;
+                        crossword.appendChild(cell);
+                    }
+                }
+
+                wordInput.value = '';
+            }
+
+            function displayQuestion() {
+                if (currentQuestionIndex < questions.length) {
+                    questionContainer.innerHTML = questions[currentQuestionIndex].question;
+                } else {
+                    questionContainer.innerHTML = "¡Has respondido todas las preguntas!";
+                }
+            }
+
+            displayCrossword();
+            displayQuestion();
+
+            submitButton.addEventListener("click", () => {
+                const inputText = wordInput.value;
+
+                if (currentQuestionIndex < questions.length) {
+                    const question = questions[currentQuestionIndex];
+                    if (inputText.toUpperCase() === question.answer.toUpperCase()) {
+                        const word = words.find(word => word.word === question.word);
+                        word.completed = true;
+                        displayCrossword();
+                        currentQuestionIndex++;
+                        displayQuestion();
+                    } else {
+                        alert("La respuesta ingresada no es correcta. Inténtalo de nuevo.");
+                    }
+                }
+            });
+        }
+
+        createCrossword();
+    </script>
+</body>
+
+</html>
