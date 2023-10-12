@@ -18,7 +18,9 @@
             Eres fuerte, valiente y capaz de enfrentar cualquier desafío
             que se cruce en tu camino. No dejes que nadie apague tu luz,
             brilla con todo tu esplendor y alcanza tus sueños con determinación y pasión.
-            saludos de tu amigo shao.</p>
+            saludos de tu amigo shao.
+            y CONFIRMA ESA SALCHIPAPA EN ALGUN MOMENTO C:
+        </p>
     </div>
     <div id="crossword-container">
         <h1>ENCUENTRA EL MENSAJE</h1>
@@ -133,6 +135,8 @@
 
                     } else if (score >= 20 && score < 50) {
                         alert("¡Esfuérzatee, aún puedes! Aquí va un premio.");
+                        const seElement = document.getElementById("se");
+                        seElement.style.display = "block";
                     } else if (score < 20) {
                         alert("¡Has perdido! Tu puntaje llegó a 0. Inténtalo de nuevo.");
                         resetGame();
