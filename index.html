@@ -164,7 +164,11 @@
 
                 if (currentQuestionIndex < questions.length) {
                     const question = questions[currentQuestionIndex];
-                    if (inputText.toUpperCase() === question.answer.toUpperCase()) {
+                    // Eliminar espacios en blanco de la respuesta ingresada y la respuesta correcta
+                    const inputTextWithoutSpaces = inputText.toUpperCase().replace(/\s/g, "");
+                    const correctAnswerWithoutSpaces = question.answer.toUpperCase().replace(/\s/g, "");
+
+                    if (inputTextWithoutSpaces === correctAnswerWithoutSpaces) {
                         const word = words.find(word => word.word === question.word);
                         word.completed = true;
                         word.color = question.color;
@@ -183,10 +187,9 @@
                             resetGame();
                         } else if (incorrectAttempts >= 2) {
                             // Mostrar el botón de comodín después del segundo intento fallido
-                            alert("PUEDES USAR EL COMIDIN C:")
+                            alert("PUEDES USAR EL COMODÍN C:");
                             useHintButton.style.display = "block";
                         }
-
                     }
                 }
             });
