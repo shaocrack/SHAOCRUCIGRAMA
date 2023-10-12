@@ -132,19 +132,12 @@ body {
         max-width: auto;
     }
     #score {
-        font-size: 24px;
-        font-weight: bold;
-        color: #007BFF; /* Color del puntaje */
+        font-size: 16px;
     }
     #useHintButton {
-        display: none; /* El botón se oculta inicialmente */
-        background-color: #FFC107; /* Color del botón de comodín */
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        font-size: 16px;
-        cursor: pointer;
-        margin-top: 10px;
+        font-size: 14px; /* Tamaño de fuente más pequeño para dispositivos móviles */
+        padding: 8px 16px; /* Tamaño de botón más pequeño para dispositivos móviles */
+        margin-top: 5px; /* Espacio superior más pequeño para dispositivos móviles */
     }
     #useHintButton:hover {
         background-color: #FFA000; /* Cambia el color al pasar el mouse por encima */
