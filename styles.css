@@ -204,7 +204,8 @@ body {
         display: none;
     }
     #se h1 {
-        font-size: 2rem; /* Tamaño de fuente del título para dispositivos móviles (ajusta según tus preferencias) */
+        font-size: 2rem;
+        text-align: center; /* Tamaño de fuente del título para dispositivos móviles (ajusta según tus preferencias) */
     }
 /* nirar */
     #se p {
