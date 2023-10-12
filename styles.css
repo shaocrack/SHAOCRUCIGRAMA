@@ -11,6 +11,7 @@ body {
     max-width: 200%;
 }
 #se {
+    /* Estilos de posición para la superposición */
     position: fixed;
     top: 0;
     left: 0;
@@ -18,18 +19,11 @@ body {
     height: 100%;
     background-color: rgba(255, 255, 255, 0.9); /* Fondo semitransparente */
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 1001; /* Z-index más alto para estar por encima de todo */
     display: none; /* Ocultar inicialmente */
-
-    /* Estilos de sombra */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    border-radius: 10px; /* Bordes redondeados para un aspecto más atractivo */
-
-    /* Estilos de texto */
-    max-width: 80%; /* Ancho máximo del cuadro */
-    text-align: center; /* Alineación de texto al centro */
 }
 
 #se h1 {
@@ -39,8 +33,13 @@ body {
 
 #se p {
     font-size: 1.5rem; /* Tamaño de fuente del párrafo (ajusta según tus preferencias) */
+    max-width: 80%; /* Establece un ancho máximo para el párrafo */
+    text-align: center; /* Alinea el texto al centro del párrafo */
+    margin: 0 auto; /* Centra el párrafo horizontalmente */
     line-height: 1.6; /* Altura de línea para una mejor legibilidad */
+    padding: 1rem; /* Relleno para el párrafo (ajusta según tus preferencias) */
 }
+
 #start-screen {
     position: fixed;
     top: 0;
