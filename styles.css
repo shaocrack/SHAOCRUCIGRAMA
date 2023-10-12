@@ -5,6 +5,9 @@ body {
     padding: 0;
     background-color: #f0f0f0;
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color:#56daae;
 }
 
 /* Estilos del crucigrama */
@@ -12,11 +15,12 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
-    width: 50%;
-    padding: 20px;
+    padding: 200px;
     background-color: #fff;
     border: 1px solid #000;
+    width: 50%;
+    max-width: 100%;
+    background-color:#A5D6A7;
 }
 
 #crossword {
@@ -67,10 +71,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 50%;
     padding: 20px;
     background-color: #fff;
     border: 1px solid #000;
+    width: 50%;
+    max-width: 100%;
 }
 
 #question {
@@ -92,6 +97,7 @@ body {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 #submitButton:hover {
