@@ -11,6 +11,15 @@
         <button id="start-button">Jugar</button>
         <h2 id="shao">SHAOPRO</h2>
     </div>
+    <div id="se">
+        <h1>eres una ganadora</h1>
+        <p>Confía en ti misma,
+            porque eres capaz de lograr todo lo que te propongas.
+            Eres fuerte, valiente y capaz de enfrentar cualquier desafío
+            que se cruce en tu camino. No dejes que nadie apague tu luz,
+            brilla con todo tu esplendor y alcanza tus sueños con determinación y pasión.
+            saludos de tu amigo shao.</p>
+    </div>
     <div id="crossword-container">
         <h1>ENCUENTRA EL MENSAJE</h1>
         <div id="crossword"></div>
@@ -45,7 +54,7 @@
             { word: "UNA", question: "¿Cuál es el opuesto de 'varias'?", answer: "UNA", color: "purple" },
             { word: "SALCHIPAPA", question: "¿Qué plato de comida rápida incluye papas y salchichas?", answer: "SALCHIPAPA", color: "orange" },
             { word: "CONFIRMA", question: "¿aqui no sabia que pregunta xD, pon confirma ", answer: "CONFIRMA", color: "yellow" },
-            { word: "HERMOSA", question: "¿aparte de bella, preciosas, inteligente, y un sin fin de cualidades tu eres? (her...)", answer: "HERMOSA", color: "pink" },
+            { word: "HERMOSA", question: "¿aparte de bella, preciosa, inteligente, y un sin fin de cualidades tu eres? (her...a)", answer: "HERMOSA", color: "pink" },
         ];
 
         let currentQuestionIndex = 0;
@@ -89,9 +98,9 @@
                                 );
 
                                 if (word.completed) {
-                            cell.classList.add("completed");
-                            cell.style.backgroundColor = word.color; // Establece el color cuando está completo
-                        }
+                                    cell.classList.add("completed");
+                                    cell.style.backgroundColor = word.color; // Establece el color cuando está completo
+                                }
                             }
                         }
 
@@ -119,6 +128,9 @@
                     questionContainer.innerHTML = "¡Has respondido todas las preguntas!";
                     if (score >= 50 && score <= 100) {
                         alert("¡HAS GANADO!");
+                        const seElement = document.getElementById("se");
+                        seElement.style.display = "flex";
+
                     } else if (score >= 20 && score < 50) {
                         alert("¡Esfuérzate, aún puedes! Aquí va un premio.");
                     } else if (score < 20) {
@@ -189,7 +201,7 @@
 
         createCrossword();
     </script>
-     <script>
+    <script>
         // JavaScript para controlar la visibilidad
         const startButton = document.getElementById("start-button");
         const startScreen = document.getElementById("start-screen");

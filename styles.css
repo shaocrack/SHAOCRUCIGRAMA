@@ -10,6 +10,36 @@ body {
     background-color:#56daae;
     max-width: 200%;
 }
+#se {
+    /* Estilos de posición para la superposición */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo semitransparente */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001; /* Z-index más alto para estar por encima de todo */
+    display: none; /* Ocultar inicialmente */
+}
+
+#se h1 {
+    font-size: 2.5rem; /* Tamaño de fuente del título (ajusta según tus preferencias) */
+    margin-bottom: 1rem; /* Espacio inferior entre el título y el párrafo */
+}
+
+#se p {
+    font-size: 1.5rem; /* Tamaño de fuente del párrafo (ajusta según tus preferencias) */
+    max-width: 80%; /* Establece un ancho máximo para el párrafo */
+    text-align: center; /* Alinea el texto al centro del párrafo */
+    margin: 0 auto; /* Centra el párrafo horizontalmente */
+    line-height: 1.6; /* Altura de línea para una mejor legibilidad */
+    padding: 1rem; /* Relleno para el párrafo (ajusta según tus preferencias) */
+}
+
 #start-screen {
     position: fixed;
     top: 0;
@@ -170,6 +200,14 @@ body {
 
 /* Media queries para dispositivos móviles */
 @media  screen and (max-width: 768px) {
+    #se h1 {
+        font-size: 2rem; /* Tamaño de fuente del título para dispositivos móviles (ajusta según tus preferencias) */
+    }
+
+    #se p {
+        font-size: 1.2rem; /* Tamaño de fuente del párrafo para dispositivos móviles (ajusta según tus preferencias) */
+        padding: 0.5rem; /* Relleno para el párrafo en dispositivos móviles (ajusta según tus preferencias) */
+    }
     #crossword-container {
         
         width: 100%;
