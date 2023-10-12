@@ -203,10 +203,10 @@ body {
     #se h1 {
         font-size: 2rem; /* Tamaño de fuente del título para dispositivos móviles (ajusta según tus preferencias) */
     }
-
+/* nirar */
     #se p {
         font-size: 1.2rem; /* Tamaño de fuente del párrafo para dispositivos móviles (ajusta según tus preferencias) */
-        padding: 0.5rem; /* Relleno para el párrafo en dispositivos móviles (ajusta según tus preferencias) */
+        padding: 0.6rem; /* Relleno para el párrafo en dispositivos móviles (ajusta según tus preferencias) */
     }
     #crossword-container {
         
