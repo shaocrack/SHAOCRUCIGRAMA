@@ -6,6 +6,10 @@
 </head>
 
 <body>
+    <div id="start-screen">
+        <h1>HOLA HERMOSA</h1>
+        <button id="start-button">Jugar</button>
+    </div>
     <div id="crossword-container">
         <h1>ENCUENTRA EL MENSAJE</h1>
         <div id="crossword"></div>
@@ -183,6 +187,19 @@
         }
 
         createCrossword();
+    </script>
+     <script>
+        // JavaScript para controlar la visibilidad
+        const startButton = document.getElementById("start-button");
+        const startScreen = document.getElementById("start-screen");
+        //const crosswordContainer = document.getElementById("crossword-container");
+
+        startButton.addEventListener("click", () => {
+            startScreen.style.display = "none"; // Oculta la pantalla de inicio
+            crosswordContainer.style.display = "block"; // Muestra el crucigrama
+        });
+
+        // Resto de tu JavaScript
     </script>
 </body>
 
