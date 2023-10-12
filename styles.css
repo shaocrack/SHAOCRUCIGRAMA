@@ -22,7 +22,6 @@ body {
     align-items: center;
     z-index: 1001; /* Z-index más alto para estar por encima de todo */
     display: none; /* Ocultar inicialmente */
-    padding: 20px; /* Espacio interno alrededor del contenido */
 
     /* Estilos de sombra */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
