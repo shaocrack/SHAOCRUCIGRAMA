@@ -9,18 +9,23 @@
     <div id="crossword-container">
         <h1>ENCUENTRA EL MENSAJE</h1>
         <div id="crossword"></div>
+        <div id="score-container">
+            <h2>Puntaje</h2>
+            <div id="score">100</div>
+        </div>
         <h2>RESPONDE LAS SIGUIENTES PREGUNTAS</h2>
         <div id="question-container">
             <div id="question"></div>
             <input type="text" id="wordInput" placeholder="Escribe tu respuesta">
             <button id="submitButton">Enviar</button>
+            <button id="useHintButton">Usar Comodín</button>
         </div>
     </div>
 
     <script>
         const words = [
-            { word: "QUIERES", row: 0, col: 0, direction: "horizontal", completed: false},
-            { word: "IR", row: 1, col: 2, direction: "vertical", completed: false},
+            { word: "QUIERES", row: 0, col: 0, direction: "horizontal", completed: false },
+            { word: "IR", row: 1, col: 2, direction: "vertical", completed: false },
             { word: "POR", row: 2, col: 3, direction: "horizontal", completed: false },
             { word: "UNA", row: 3, col: 5, direction: "horizontal", completed: false },
             { word: "SALCHIPAPA", row: 2, col: 7, direction: "vertical", completed: false },
@@ -36,95 +41,148 @@
             { word: "SALCHIPAPA", question: "¿Qué plato de comida rápida incluye papas y salchichas?", answer: "SALCHIPAPA", color: "orange" },
             { word: "CONFIRMA", question: "¿aqui no sabia que pregunta xD, pon confirma ", answer: "CONFIRMA", color: "yellow" },
             { word: "HERMOSA", question: "¿aparte de bella, preciosas tu eres? (her...)", answer: "HERMOSA", color: "pink" },
-    ];
+        ];
 
-    function createCrossword() {
-    const crossword = document.getElementById("crossword");
-    const wordInput = document.getElementById("wordInput");
-    const submitButton = document.getElementById("submitButton");
-    const questionContainer = document.getElementById("question");
+        let currentQuestionIndex = 0;
+        let incorrectAttempts = 0;
+        let score = 100;
+        let wrongAnswers = 0;
 
-    let currentQuestionIndex = 0;
+        function createCrossword() {
+            const crossword = document.getElementById("crossword");
+            const wordInput = document.getElementById("wordInput");
+            const submitButton = document.getElementById("submitButton");
+            const questionContainer = document.getElementById("question");
+            const scoreContainer = document.getElementById("score");
+            const useHintButton = document.getElementById("useHintButton");
 
-    function displayCrossword() {
-        crossword.innerHTML = '';
+            function displayCrossword() {
+                crossword.innerHTML = '';
 
-        for (let row = 0; row < 12; row++) {
-            for (let col = 0; col < 11; col++) {
-                const cell = document.createElement("div");
-                cell.classList.add("cell");
+                for (let row = 0; row < 12; row++) {
+                    for (let col = 0; col < 11; col++) {
+                        const cell = document.createElement("div");
+                        cell.classList.add("cell");
 
-                let cellContent = '';
+                        let cellContent = '';
 
-                for (const word of words) {
-                    if (
-                        (word.direction === "horizontal" &&
-                            row === word.row &&
-                            col >= word.col &&
-                            col < word.col + word.word.length) ||
-                        (word.direction === "vertical" &&
-                            col === word.col &&
-                            row >= word.row &&
-                            row < word.row + word.word.length)
-                    ) {
-                        cellContent = word.word.charAt(
-                            word.direction === "horizontal"
-                                ? col - word.col
-                                : row - word.row
-                        );
+                        for (const word of words) {
+                            if (
+                                (word.direction === "horizontal" &&
+                                    row === word.row &&
+                                    col >= word.col &&
+                                    col < word.col + word.word.length) ||
+                                (word.direction === "vertical" &&
+                                    col === word.col &&
+                                    row >= word.row &&
+                                    row < word.row + word.word.length)
+                            ) {
+                                cellContent = word.word.charAt(
+                                    word.direction === "horizontal"
+                                        ? col - word.col
+                                        : row - word.row
+                                );
 
-                        if (word.completed) {
+                                if (word.completed) {
                             cell.classList.add("completed");
                             cell.style.backgroundColor = word.color; // Establece el color cuando está completo
                         }
+                            }
+                        }
+
+                        if (!cellContent) {
+                            const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+                            cellContent = randomLetter;
+                        }
+
+                        cell.textContent = cellContent;
+                        crossword.appendChild(cell);
                     }
                 }
 
-                if (!cellContent) {
-                    const randomLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
-                    cellContent = randomLetter;
+                wordInput.value = '';
+            }
+
+            function displayQuestion() {
+                if (currentQuestionIndex < questions.length) {
+                    questionContainer.innerHTML = questions[currentQuestionIndex].question;
+                    // Restablecer el recuento de intentos fallidos al mostrar una nueva pregunta
+                    incorrectAttempts = 0;
+                    // Ocultar el botón de comodín
+                    useHintButton.style.display = "none";
+                } else {
+                    questionContainer.innerHTML = "¡Has respondido todas las preguntas!";
+                    if (score >= 50 && score <= 100) {
+                        alert("¡HAS GANADO!");
+                    } else if (score >= 20 && score < 50) {
+                        alert("¡Esfuérzate, aún puedes! Aquí va un premio.");
+                    } else if (score < 20) {
+                        alert("¡Has perdido! Tu puntaje llegó a 0. Inténtalo de nuevo.");
+                        resetGame();
+                    }
                 }
-
-                cell.textContent = cellContent;
-                crossword.appendChild(cell);
             }
-        }
+            //displayCrossword();
+            //displayQuestion();
 
-        wordInput.value = '';
-    }
+            function updateScore() {
+                scoreContainer.innerHTML = score;
+            }
 
-    function displayQuestion() {
-        if (currentQuestionIndex < questions.length) {
-            questionContainer.innerHTML = questions[currentQuestionIndex].question;
-        } else {
-            questionContainer.innerHTML = "¡Has respondido todas las preguntas!";
-        }
-    }
-
-    displayCrossword();
-    displayQuestion();
-
-    submitButton.addEventListener("click", () => {
-        const inputText = wordInput.value;
-
-        if (currentQuestionIndex < questions.length) {
-            const question = questions[currentQuestionIndex];
-            if (inputText.toUpperCase() === question.answer.toUpperCase()) {
-                const word = words.find(word => word.word === question.word);
-                word.completed = true;
-                word.color = question.color; // Establece el color
+            function resetGame() {
+                currentQuestionIndex = 0;
+                score = 100;
+                wrongAnswers = 0;
                 displayCrossword();
-                currentQuestionIndex++;
                 displayQuestion();
-            } else {
-                alert("La respuesta ingresada no es correcta. Inténtalo de nuevo.");
+                updateScore();
             }
+
+            submitButton.addEventListener("click", () => {
+                const inputText = wordInput.value;
+
+                if (currentQuestionIndex < questions.length) {
+                    const question = questions[currentQuestionIndex];
+                    if (inputText.toUpperCase() === question.answer.toUpperCase()) {
+                        const word = words.find(word => word.word === question.word);
+                        word.completed = true;
+                        word.color = question.color;
+                        displayCrossword();
+                        currentQuestionIndex++;
+                        displayQuestion();
+                    } else {
+                        alert("La respuesta ingresada no es correcta. Inténtalo de nuevo.");
+                        // Incrementar el recuento de intentos fallidos
+                        incorrectAttempts++;
+                        score -= 20; // Restar 20 puntos por respuesta incorrecta
+                        updateScore();
+
+                        if (score <= 0) {
+                            alert("¡Has perdido! Tu puntaje llegó a 0. Inténtalo de nuevo.");
+                            resetGame();
+                        } else if (incorrectAttempts >= 2) {
+                            // Mostrar el botón de comodín después del segundo intento fallido
+                            alert("PUEDES USAR EL COMIDIN C:")
+                            useHintButton.style.display = "block";
+                        }
+
+                    }
+                }
+            });
+
+            useHintButton.addEventListener("click", () => {
+                //const inputText = wordInput.value;
+                if (currentQuestionIndex < questions.length) {
+                    const question = questions[currentQuestionIndex];
+                    wordInput.value = question.answer;
+                    useHintButton.style.display = "none";
+                }
+            });
+
+            resetGame();
         }
-    });
-}
 
-createCrossword();
-
+        createCrossword();
     </script>
 </body>
 
