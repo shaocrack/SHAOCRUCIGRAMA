@@ -8,6 +8,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     background-color:#56daae;
+    max-width: 200%;
 }
 
 /* Estilos del crucigrama */
@@ -110,6 +111,7 @@ body {
         width: 100%;
         padding: 10px;
         background-color: aqua;
+        max-width: auto;
     }
 
     #crossword {
