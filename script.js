@@ -49,10 +49,11 @@ function createCrossword(questionIndex) {
                     }
                 }
 
-                // Pintar las palabras completadas de amarillo
+                // Pintar las palabras completadas de colores diferentes
                 for (const question of questions) {
                     if (question.completed && cellContent === question.word) {
                         cell.classList.add("completed");
+                        cell.style.backgroundColor = question.color;
                     }
                 }
 
